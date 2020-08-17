@@ -1,1 +1,1 @@
-# data-standard
+# Data Standard
