@@ -53,17 +53,17 @@
         "targetsAchieved": {
           "title": "Targets achieved",
           "description": "The [Action] prescribed for the case if targets of this stage of the electronic auction where acheived",
-          "$ref": "#/definition/Action"
+          "$ref": "#/definitions/Action"
         },
         "targetsNotAchieved": {
           "title": "Targets not achieved",
           "description": "The [Action] prescribed for the case if targets of this stage of the electronic auction where not acheived",
-          "$ref": "#/definition/Action"
+          "$ref": "#/definitions/Action"
         },
         "groupCancelled": {
           "title": "Group cancelled",
           "description": "The [Action] prescribed for the case if this stage of the electronic auction was cancelled do to requirements of the conditions to start",
-          "$ref": "#/definition/Action"
+          "$ref": "#/definitions/Action"
         }
       }
     },
@@ -147,6 +147,9 @@
           ]
         }
       }
+    },
+    "Amendment": {
+      "type": "object"
     },
     "Auction": {
       "title": "Electronic auction",
@@ -297,7 +300,7 @@
           "description": "The [ActionTriggers] for this stage of the electronic auction",
           "type": "array",
           "items": {
-            "$ref": "#/definition/ActionTriggers"
+            "$ref": "#/definitions/ActionTriggers"
           }
         },
         "invitedTenderers": {
@@ -305,7 +308,7 @@
           "description": "The set of the groups of the invited particiapnts described using as [InvitationToAuction]",
           "type": "array",
           "items": {
-            "$ref": "#/definition/InvitationToAuction"
+            "$ref": "#/definitions/InvitationToAuction"
           }
         },
         "rounds": {
@@ -319,7 +322,7 @@
         "auctionProgress": {
           "type": "array",
           "items": {
-            "#ref": "#/definitions/AuctionRoundProgress"
+            "$ref": "#/definitions/AuctionRoundProgress"
           }
         }
       }
@@ -405,7 +408,7 @@
           "title": "",
           "description": "The [Period] for this round",
           "type": "object",
-          "#ref": "#/definitions/Period"
+          "$ref": "#/definitions/Period"
         },
         "bids": {
           "title": "",
@@ -603,13 +606,13 @@
         "address": {
           "title": "Legal [Address] of the Bank",
           "description": "Legal [Address] of the Bank",
-          "type": "Object",
+          "type": "object",
           "$ref": "#/definitions/Address"
         },
         "identifier": {
           "title": "",
           "description": "Primary [Identifier] of the Bank",
-          "type": "Object",
+          "type": "object",
           "$ref": "#/definitions/Identifier"
         },
         "accountIdentification": {
@@ -1089,6 +1092,9 @@
           ]
         }
       }
+    },
+    "Complaint": {
+      "type": "object"
     },
     "ContactPoint": {
       "title": "Contact point",
@@ -2075,7 +2081,7 @@
     "InvitationToAuction": {
       "title": "Invitation",
       "description": "The set data describing the category of the participants of this electronic auction to be invited to specific stage of such auction",
-      "type": "",
+      "type": "object",
       "properties": {
         "category": {
           "title": "Particiapnts catogory",
@@ -2341,7 +2347,7 @@
           "type": "object",
           "title": "Gazetteer",
           "description": "A [Gazetteer] of this location",
-          "#ref": "#/definitions/Gazetter"
+          "$ref": "#/definitions/Gazetter"
         },
         "uri": {
           "type": [
@@ -2881,7 +2887,7 @@
           "type": "object",
           "title": "Unit",
           "description": "Unit",
-          "$ref": "#/Definitions/Unit"
+          "$ref": "#/definitions/Unit"
         },
         "dimensions": {
           "type": "object",
@@ -3005,7 +3011,7 @@
           ],
           "description": "Any of [OrganizationDetails] for this entity",
           "title": "Details",
-          "#ref": "#definitions/OrganizationDetails"
+          "$ref": "#/definitions/OrganizationDetails"
         },
         "buyerProfile": {
           "title": "Buyer Profile URI",
@@ -3053,7 +3059,7 @@
           "type": "string"
         },
         "classifications": {
-          "decription": "Any additional classifications for both buyers and sellerd, described as ab array of [Classification]",
+          "description": "Any additional classifications for both buyers and sellerd, described as ab array of [Classification]",
           "type": "array",
           "items": {
             "$ref": "#/definitions/Classification"
@@ -3069,7 +3075,7 @@
           "codelist": "http://standard.open-contracting.org/1.1-dev/en/schema/codelists/#type-of-buyer"
         },
         "typeOfSupplier": {
-          "descriptiopn": "Specifing whether this Entity is 'personel' or 'company' as [Classification]",
+          "description": "Specifing whether this Entity is 'personel' or 'company' as [Classification]",
           "type": "object",
           "$ref": "#/definitions/Classification"
         },
@@ -3114,9 +3120,9 @@
           }
         },
         "legalForm": {
-          "description": "Information about [Classificarion] of the legal form of the organization",
+          "description": "Information about [Classification] of the legal form of the organization",
           "type": "object",
-          "$ref": "#/definitions/Classificarion"
+          "$ref": "#/definitions/Classification"
         },
         "permits": {
           "description": "Information about set of [Permit] and licenses issued for the organization",
@@ -3379,15 +3385,16 @@
           "type": "object",
           "$ref": "#/definitions/Identifier"
         },
-        "businessFunctions": [
-          {
+        "businessFunctions": {
+          "type": "array",
+          "items": {
             "description": "A set of persones' [BusinessFunction]",
             "type": "array",
             "items": {
               "$ref": "#/definitions/BusinessFunction"
             }
           }
-        ]
+        }
       }
     },
     "PlaceOfPerformance": {
@@ -3930,7 +3937,7 @@
           "description": "Any [Evidance] that will be accepted as a proof of sasisfaction of sepcific requirement ",
           "type": "array",
           "items": {
-            "$ref": "#/definition/Evidence"
+            "$ref": "#/definitions/Evidence"
           }
         }
       }
@@ -4711,7 +4718,7 @@
               "description": "The prescribed presets of settings and adjustments available for the electronic auction as one one of the procurement methods modalities applied under this contracting process",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/electronicAuctionModalities"
+                "$ref": "#/definitions/ElectronicAuctionModalities"
               }
             }
           }
