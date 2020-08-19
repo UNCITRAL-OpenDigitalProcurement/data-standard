@@ -148,6 +148,62 @@
         }
       }
     },
+    "Amendment": {
+      "title": "Amendment",
+      "type": "object",
+      "description": "Amendment information",
+      "properties": {
+        "date": {
+          "title": "Amendment date",
+          "description": "The date of this amendment.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "description": "An explanation for the amendment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "An identifier for this amendment: often the amendment number",
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "ID"
+        },
+        "description": {
+          "description": "A free text, or semi-structured, description of the changes made in this amendment.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Description"
+        },
+        "amendsReleaseID": {
+          "description": "Provide the identifier (release.id) of the OCDS release (from this contracting process) that provides the values for this contracting process **before** the amendment was made.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Amended release (identifier)"
+        },
+        "releaseID": {
+          "description": "Provide the identifier (release.id) of the OCDS release (from this contracting process) that provides the values for this contracting process **after** the amendment was made.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Amending release (identifier)"
+        }
+      }
+    },
     "Auction": {
       "title": "Electronic auction",
       "description": "Data regarding electronic auction established against specific lot",
@@ -552,14 +608,6 @@
             "$ref": "#/definitions/RequirementResponse"
           },
           "unqiueItems": true
-        },
-        "complaints": {
-          "title": "Comlaints",
-          "description": "Any comlaints related to this award",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RelatedComplaint"
-          }
         },
         "statusDetails": {
           "title": "Status details",
@@ -2740,110 +2788,6 @@
         }
       }
     },
-    "Objection": {
-      "title": "Objection",
-      "description": "A precise subject and requests expected to be responded",
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "Identifier",
-          "description": "Unique identifier for this objection",
-          "type": [
-            "string",
-            "integer"
-          ]
-        },
-        "description": {
-          "title": "Description",
-          "description": "Bojections' brief description provided by complainer",
-          "type": "string"
-        },
-        "status": {
-          "title": "Status",
-          "description": "The current status of the objection",
-          "type": "string",
-          "enum": [],
-          "openCodelist": false,
-          "codelist": "objectionStatuses.csv"
-        },
-        "statusDetails": {
-          "title": "Status details",
-          "description": "The details of current status of the objection",
-          "type": "string",
-          "enum": [],
-          "openCodelist": false,
-          "codelist": "objectionStatusDetails.csv"
-        },
-        "relatesTo": {
-          "title": "Relates to",
-          "description": "The schema element that the objection affects. For example objection may be defined against lot or against award",
-          "type": "string",
-          "enum": [
-            "lot",
-            "award"
-          ],
-          "openCodelist": false,
-          "codelist": "objectionRelatesTo.csv"
-        },
-        "relatedItem": {
-          "title": "Related item",
-          "description": "The id of the schema element which the objection affects on. ",
-          "type": "string"
-        },
-        "classification": {
-          "title": "Classification",
-          "description": "[Classification] according to Review Bodies' approach to systemize subjects of complaint",
-          "$ref": "#/definitions/Classification"
-        },
-        "requestedActions": {
-          "title": "Requested actions",
-          "description": "A list of precise [RequestedAction] under this objection",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RequestedAction"
-          }
-        }
-      }
-    },
-    "ObjectionResponse": {
-      "properties": {
-        "id": {
-          "title": "Identifier",
-          "description": "Unique identifier for this response on objection",
-          "type": [
-            "string",
-            "integer"
-          ]
-        },
-        "date": {
-          "title": "Date",
-          "description": "Date when response is published",
-          "type": "string",
-          "format": "date-time"
-        },
-        "requestedAction": {
-          "title": "Requested action",
-          "description": "An id of the requested action against whitch this response is published",
-          "type": "string"
-        },
-        "decision": {
-          "title": "Decision",
-          "description": "The code of decision made",
-          "type": "string",
-          "enum": [
-            "rejected",
-            "satisfied"
-          ],
-          "openCodelist": false,
-          "codelist": "objectionResopnseDecisions.csv"
-        },
-        "justification": {
-          "title": "Justification",
-          "description": "Free text justification for response provided by adressed Party",
-          "type": "string"
-        }
-      }
-    },
     "Observation": {
       "type": "object",
       "title": "Observation",
@@ -3714,11 +3658,6 @@
         }
       }
     },
-    "RelatedComplaint": {
-      "title": "Related Complaint",
-      "description": "The id of the related complaint",
-      "type": "string"
-    },
     "RelatedProcess": {
       "description": "A link to a related contracting process in OCDS and the type of relationship.",
       "type": "object",
@@ -3795,50 +3734,6 @@
             "string",
             "null"
           ]
-        }
-      }
-    },
-    "RequestedAction": {
-      "title": "Requested action",
-      "description": "A precise action requested to satisfy an objection under complaint",
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "Identifier",
-          "description": "Unique identifier for this requested action",
-          "type": [
-            "string",
-            "integer"
-          ]
-        },
-        "type": {
-          "title": "Type",
-          "description": "The type of the requested action",
-          "type": "string",
-          "enum": [
-            "interimMeasure",
-            "setAside",
-            "damages",
-            "annulContract"
-          ],
-          "openCodelist": false,
-          "codelist": "requestedActionTypes.csv"
-        },
-        "source": {
-          "title": "Source",
-          "description": "The party that will be obliged to take the requested action if the objection is satisfied",
-          "type": "string",
-          "enum": [
-            "reviewBody",
-            "procuringEntity"
-          ],
-          "openCodelist": false,
-          "codelist": "requestedActionSource.csv"
-        },
-        "description": {
-          "title": "Description",
-          "description": "Free text description of the requested action provided by complainer",
-          "type": "string"
         }
       }
     },
@@ -4050,102 +3945,6 @@
           "description": "The title of the requirement which the response is applicable to",
           "type": "string",
           "mergeStrategy": "ocdsVersion"
-        }
-      }
-    },
-    "Review": {
-      "title": "Review procedure",
-      "description": "Review Procedure conducted agains one or more complaints",
-      "type": "object",
-      "properties": {
-        "id": {
-          "title": "Identifier",
-          "description": "Unique identifier for this procedure",
-          "type": [
-            "string",
-            "integer"
-          ]
-        },
-        "date": {
-          "title": "Initiation date",
-          "description": "Date of initiation of this procedure",
-          "type": "string",
-          "format": "date-time"
-        },
-        "status": {
-          "title": "Status",
-          "description": "The current status of the procedure",
-          "type": "string",
-          "enum": [],
-          "openCodelist": false,
-          "codelist": "reviewProcedureStatuses.csv"
-        },
-        "statusDetails": {
-          "title": "Status details",
-          "description": "The details of current status of the procedure",
-          "type": "string",
-          "enum": [
-            "negative",
-            "partiallyPositive",
-            "positive"
-          ],
-          "openCodelist": false,
-          "codelist": "reviewProcedureStatusDetails.csv"
-        },
-        "relatedComplaints": {
-          "title": "Related complaints",
-          "description": "A list of the id's of complaints covered by this procedure",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "milestones": {
-          "title": "Milestones",
-          "description": "Each [Milestone] associated with the procedure",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Milestone"
-          }
-        },
-        "documents": {
-          "title": "Documents",
-          "description": "Each [Document] and attachment related to the procedure",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Document"
-          }
-        },
-        "objectionResponses": {
-          "title": "Objection responses",
-          "description": "A list of [ObjectionResponse] against all actions requested under relatede complaints",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ObjectionResponse"
-          }
-        }
-      }
-    },
-    "ReviewProceedings": {
-      "title": "Review Proceedings",
-      "description": "General information related to reviews under this contracting process together with collected complaints and reviews",
-      "type": "object",
-      "properties": {
-        "complaints": {
-          "title": "Complaints",
-          "description": "Complaints to the conditions and decisions",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Complaint"
-          }
-        },
-        "reviews": {
-          "title": "Reviews",
-          "description": "Review Procedures conducted due to complaints received",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Review"
-          }
         }
       }
     },
@@ -4722,14 +4521,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Conversion"
-          }
-        },
-        "complaints": {
-          "title": "Comlaints",
-          "description": "Any comlaints related to this tender",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RelatedComplaint"
           }
         },
         "recurrence": {
